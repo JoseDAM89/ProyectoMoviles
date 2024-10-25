@@ -38,7 +38,7 @@ public class Activity1 extends AppCompatActivity {
 
 
         // Mostrar el contador en el TextView
-        textViewCounter.setText("Contador: " + counter);
+        textViewCounter.setText("Número de accesos a la App: " + counter);
 
         // Incrementar el contador
         counter++;
