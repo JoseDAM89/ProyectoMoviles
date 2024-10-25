@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:maxLength="50"
+        android:text="Número de accesos a la App: 0"
         android:maxLines="2"
         android:ellipsize="end"
         android:textSize="18sp"
