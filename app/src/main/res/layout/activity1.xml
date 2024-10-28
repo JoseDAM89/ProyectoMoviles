@@ -39,25 +39,25 @@
         <!-- Botones dentro del GridLayout -->
         <!-- Aplicar estilo personalizado a cada botón -->
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/buttonInternet"
             style="@style/CustomButtonStyle"
             android:drawableTop="@android:drawable/ic_menu_search"
             android:text="Internet" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/buttonSensores"
             style="@style/CustomButtonStyle"
             android:drawableTop="@android:drawable/ic_notification_overlay"
             android:text="Sensores" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/buttonCamara"
             style="@style/CustomButtonStyle"
             android:drawableTop="@android:drawable/ic_menu_camera"
             android:text="Cámara" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/buttonGaleria"
             style="@style/CustomButtonStyle"
             android:drawableTop="@android:drawable/ic_menu_gallery"
             android:text="Galería" />
