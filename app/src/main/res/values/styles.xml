@@ -3,8 +3,8 @@
 
     <!-- Define un estilo personalizado para los botones -->
     <style name="CustomButtonStyle">
-        <item name="android:layout_width">170dp</item>
-        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">160dp</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:backgroundTint">#2B5D13</item> <!-- Color de fondo -->
         <item name="android:textColor">#FFFFFF</item> <!-- Color del texto -->
