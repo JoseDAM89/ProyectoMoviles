@@ -1,7 +1,10 @@
 package com.example.proyectoutilidades;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +13,11 @@ public class Activity1 extends AppCompatActivity {
 
     private static final String CLAVE_CONTADOR = "ArchivoContador";
     private static final String VALOR_CONTADOR = "Contador";
+    private Button btn1;
+    private Button btn2;
+    private Button btn3;
+    private Button btn4;
+
 
     private TextView textViewCounter;
     private SharedPreferences sharedPreferences;
@@ -22,6 +30,18 @@ public class Activity1 extends AppCompatActivity {
 
         aumentacontador();
 
+        btn1 = findViewById(R.id.buttonInternet);
+        btn2 = findViewById(R.id.buttonCamara);
+        btn3 = findViewById(R.id.buttonSensores);
+        btn4 = findViewById(R.id.buttonGaleria);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity1.this, ActivityInternet.class);
+                        startActivity(intent);
+            }
+        });
     }
 
     private void aumentacontador() {

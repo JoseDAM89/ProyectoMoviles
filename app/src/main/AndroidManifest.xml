@@ -22,6 +22,9 @@
         </activity>
 
         <!-- Aquí pueden ir otras actividades si las hay -->
+        <activity android:name=".ActivityInternet" android:exported="true">
+
+        </activity>
 
     </application>
 
