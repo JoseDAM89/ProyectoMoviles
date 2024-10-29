@@ -1,4 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_dynamic_neutral30">
+
+
+    <TextView
+        android:id="@+id/contadorAccesosTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="602dp"
+        android:fontFamily="monospace"
+        android:text="Número de accesos a la App: 0"
+        android:textColor="@color/teal_200"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonInternet"
+        style="@style/CustomButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="162dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableTop="@android:drawable/ic_menu_search"
+        android:text="Internet"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCamara"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSensores"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contadorAccesosTxt" />
+
+
+    <Button
+        android:id="@+id/buttonSensores"
+        style="@style/CustomButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="162dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="10dp"
+        android:text="Sensores"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGaleria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonInternet"
+        app:layout_constraintTop_toBottomOf="@+id/contadorAccesosTxt"
+        android:drawableTop="@android:drawable/ic_menu_gallery"/>
+
+
+    <Button
+        android:id="@+id/buttonCamara"
+        style="@style/CustomButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="141dp"
+        android:text="Cámara"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonGaleria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonInternet"
+        android:drawableTop="@android:drawable/ic_menu_camera"/>
+
+
+    <Button
+        android:id="@+id/buttonGaleria"
+        style="@style/CustomButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="141dp"
+        android:drawableTop="@android:drawable/ic_menu_gallery"
+        android:text="Galería"
+        app:iconTintMode="src_over"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonCamara"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSensores" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,8 +139,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <!-- Botones dentro del GridLayout -->
-        <!-- Aplicar estilo personalizado a cada botón -->
+        <!- Botones dentro del GridLayout -->
+        <!-- Aplicar estilo personalizado a cada botón
         <Button
             android:id="@+id/buttonInternet"
             style="@style/CustomButtonStyle"
@@ -64,5 +167,4 @@
 
     </GridLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>-->

@@ -47,7 +47,7 @@ public class Activity1 extends AppCompatActivity {
     private void aumentacontador() {
 
         // Inicializar el TextView
-        textViewCounter = findViewById(R.id.textViewCounter);
+        textViewCounter = findViewById(R.id.contadorAccesosTxt);
 
         // Obtener SharedPreferences
         sharedPreferences = getSharedPreferences(CLAVE_CONTADOR, MODE_PRIVATE);
