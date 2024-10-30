@@ -3,28 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral30">
+    android:layout_height="match_parent">
+    <!--android:background="@color/material_dynamic_neutral30"-->
 
 
     <TextView
         android:id="@+id/contadorAccesosTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="602dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="monospace"
         android:text="Número de accesos a la App: 0"
         android:textColor="@color/teal_200"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.743"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonInternet"
@@ -36,6 +30,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:drawableTop="@android:drawable/ic_menu_search"
+        android:drawableTint="#000000"
         android:text="Internet"
         app:layout_constraintBottom_toTopOf="@+id/buttonCamara"
         app:layout_constraintEnd_toStartOf="@+id/buttonSensores"
@@ -52,12 +47,13 @@
         android:layout_marginTop="162dp"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="10dp"
+        android:drawableTop="@android:drawable/ic_menu_view"
+        android:drawableTint="#000000"
         android:text="Sensores"
         app:layout_constraintBottom_toTopOf="@+id/buttonGaleria"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonInternet"
-        app:layout_constraintTop_toBottomOf="@+id/contadorAccesosTxt"
-        android:drawableTop="@android:drawable/ic_menu_gallery"/>
+        app:layout_constraintTop_toBottomOf="@+id/contadorAccesosTxt" />
 
 
     <Button
@@ -74,7 +70,8 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonGaleria"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonInternet"
-        android:drawableTop="@android:drawable/ic_menu_camera"/>
+        android:drawableTop="@android:drawable/ic_menu_camera"
+        android:drawableTint="#000000"/>
 
 
     <Button
@@ -87,6 +84,7 @@
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="141dp"
         android:drawableTop="@android:drawable/ic_menu_gallery"
+        android:drawableTint="#000000"
         android:text="Galería"
         app:iconTintMode="src_over"
         app:layout_constraintBottom_toBottomOf="parent"
