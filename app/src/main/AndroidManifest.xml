@@ -28,4 +28,7 @@
 
     </application>
 
+    <!-- Permiso para acceder a internet -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>
