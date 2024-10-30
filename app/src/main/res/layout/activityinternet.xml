@@ -10,20 +10,20 @@
         android:id="@+id/view"
         android:layout_width="417dp"
         android:layout_height="116dp"
-        android:background="#2A7E0B"
+        android:background="@color/teal_200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewVerde"
-        android:layout_width="408dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="379dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
-        android:fontFamily="monospace"
+        android:fontFamily="sans-serif-medium"
         android:text="Introduce el nombre de la ciudad"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
         android:layout_width="268dp"
         android:layout_height="58dp"
         android:layout_marginStart="68dp"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="text"
         android:text="Ciudad"
@@ -42,11 +42,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="105dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="80dp"
-        android:background="#00E645"
+        style="@style/CustomButtonStyle"
+        android:layout_width="158dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="64dp"
         android:hapticFeedbackEnabled="false"
         android:text="Buscar"
         android:textColor="#263238"
