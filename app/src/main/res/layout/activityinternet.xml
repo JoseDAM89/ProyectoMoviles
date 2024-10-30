@@ -6,6 +6,17 @@
     android:layout_height="match_parent">
 
 
+    <Button
+        android:id="@+id/buttonInternet2"
+        style="@style/CustomButtonStyle"
+        android:layout_width="152dp"
+        android:layout_height="118dp"
+        android:drawableTop="@android:drawable/ic_menu_search"
+        android:drawableTint="#000000"
+        android:text="Buscar"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="283dp" />
+
     <View
         android:id="@+id/view"
         android:layout_width="417dp"
@@ -32,26 +43,13 @@
         android:layout_width="268dp"
         android:layout_height="58dp"
         android:layout_marginStart="68dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
         android:inputType="text"
         android:text="Ciudad"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewVerde" />
-
-    <Button
-        android:id="@+id/button"
-        style="@style/CustomButtonStyle"
-        android:layout_width="158dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="64dp"
-        android:hapticFeedbackEnabled="false"
-        android:text="Buscar"
-        android:textColor="#263238"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
