@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <View
         android:id="@+id/view"
         android:layout_width="417dp"
@@ -46,7 +47,6 @@
         android:layout_marginStart="152dp"
         android:layout_marginTop="80dp"
         android:background="#00E645"
-        android:fontFamily="@font/coda"
         android:hapticFeedbackEnabled="false"
         android:text="Buscar"
         android:textColor="#263238"
