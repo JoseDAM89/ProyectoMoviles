@@ -30,7 +30,7 @@ public class ActivityInternet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activityinternet);  // Asegúrate de incluir la vista
-        t1 = findViewById(R.id.t1);
+        //t1 = findViewById(R.id.t1);
     }
 
     private void obtenerDatosCiudad(String ciudad) {
