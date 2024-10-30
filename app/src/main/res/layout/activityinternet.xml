@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="413dp"
-        android:layout_height="103dp"
-        android:background="#59BF9A"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="-1dp" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="417dp"
+        android:layout_height="116dp"
+        android:background="#2A7E0B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewVerde"
-        android:layout_width="312dp"
-        android:layout_height="35dp"
+        android:layout_width="408dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="monospace"
         android:text="Introduce el nombre de la ciudad"
         android:textColor="@color/black"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="39dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="268dp"
         android:layout_height="58dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="67dp"
         android:ems="10"
         android:inputType="text"
         android:text="Ciudad"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="121dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewVerde" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="80dp"
+        android:background="#00E645"
+        android:fontFamily="@font/coda"
+        android:hapticFeedbackEnabled="false"
         android:text="Buscar"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="256dp" />
+        android:textColor="#263238"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
