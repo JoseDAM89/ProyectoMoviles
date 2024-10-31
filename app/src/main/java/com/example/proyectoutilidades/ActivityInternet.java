@@ -95,8 +95,8 @@ public class ActivityInternet extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            resultadoTextView.setText(result);
+        protected void onPostExecute(String resultado) {
+            resultadoTextView.setText(resultado);
         }
     }
 }
