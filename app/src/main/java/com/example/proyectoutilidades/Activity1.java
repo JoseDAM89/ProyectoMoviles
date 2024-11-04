@@ -35,11 +35,21 @@ public class Activity1 extends AppCompatActivity {
         btn3 = findViewById(R.id.buttonSensores);
         btn4 = findViewById(R.id.buttonGaleria);
 
+
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity1.this, ActivityInternet.class);
-                        startActivity(intent);
+                Intent intentInternet = new Intent(Activity1.this, ActivityInternet.class);
+                        startActivity(intentInternet);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSensores = new Intent(Activity1.this,ActivitySensores.class);
+                startActivity(intentSensores);
             }
         });
     }

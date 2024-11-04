@@ -26,6 +26,10 @@
 
         </activity>
 
+        <activity android:name=".ActivitySensores" android:exported="true">
+
+        </activity>
+
     </application>
 
     <!-- Permiso para acceder a internet -->
