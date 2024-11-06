@@ -4,52 +4,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="156dp"
-        android:layout_height="38dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="96dp" />
+    <!-- Directriz vertical para dividir la pantalla en tres columnas -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_constraintGuide_percent="0.33"
+        android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_constraintGuide_percent="0.66"
+        android:orientation="vertical" />
+
+    <!-- Directriz horizontal para centrar los TextView -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_constraintGuide_percent="0.5"
+        android:orientation="horizontal" />
+
+    <!-- TextView para el eje X -->
+
+    <!-- TextView para el eje Y -->
+
+    <!-- TextView para el eje Z -->
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="155dp"
-        android:layout_height="40dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="143dp" />
+        android:id="@+id/textViewX"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="136dp"
+        android:layout_height="20dp"
+        android:text="X Axis"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="156dp"
-        android:layout_height="41dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="47dp" />
+        android:id="@+id/textViewY"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_2"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="136dp"
+        android:layout_height="20dp"
+        android:text="Y Axis"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="139dp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="143dp" />
-
-    <TextView
-        android:id="@+id/EJEX"
-        android:layout_width="68dp"
-        android:layout_height="39dp"
-        android:text="Eje X"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="47dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="94dp" />
+        android:id="@+id/textViewZ"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_2"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="136dp"
+        android:layout_height="20dp"
+        android:text="Z Axis"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="91dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
