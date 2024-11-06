@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/textViewVerde"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:background="@color/teal_200"
         android:fontFamily="monospace"
         android:text="Introduce el nombre de la ciudad"
