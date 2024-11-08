@@ -9,5 +9,5 @@ public class ActivityCamara extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activitysensores);}
+        setContentView(R.layout.activitycamara);}
 }
