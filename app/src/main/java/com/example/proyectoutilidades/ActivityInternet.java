@@ -28,6 +28,15 @@ public class ActivityInternet extends AppCompatActivity {
         resultadoTextView = findViewById(R.id.t1); //Poner aqui el textview
         Button buttonBuscar = findViewById(R.id.buttonBuscar);
 
+        ciudadEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    ciudadEditText.setText("");
+                }
+            }
+        });
+
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
