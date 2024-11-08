@@ -45,6 +45,14 @@ public class Activity1 extends AppCompatActivity {
             }
         });
 
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentCamara = new Intent(Activity1.this, ActivityCamara.class);
+                        startActivity(intentCamara);
+            }
+        });
+
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
