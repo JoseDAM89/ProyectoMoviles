@@ -37,7 +37,8 @@
         tools:ignore="ManifestOrder" />
 
     <!-- Permiso para la posición del teléfono
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:ignore="ManifestOrder" />-->
     <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true" />
 
 </manifest>
