@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.31" />
 
     <TextView
         android:id="@+id/contadorAccesosTxt"
@@ -42,20 +42,21 @@
         android:id="@+id/buttonInternet"
         style="@style/CustomButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_margin="16dp"
         android:drawableTop="@android:drawable/ic_menu_search"
         android:drawableTint="#000000"
-        android:text="Internet"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="16dp"
+        android:text="Conexión a internet"
         app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal" />
 
     <Button
         android:id="@+id/buttonSensores"
         style="@style/CustomButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_margin="16dp"
         android:drawableTop="@android:drawable/ic_menu_view"
         android:drawableTint="#000000"
@@ -68,7 +69,7 @@
         android:id="@+id/buttonCamara"
         style="@style/CustomButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_margin="16dp"
         android:drawableTop="@android:drawable/ic_menu_camera"
         android:drawableTint="#000000"
@@ -81,7 +82,7 @@
         android:id="@+id/buttonGaleria"
         style="@style/CustomButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_margin="16dp"
         android:drawableTop="@android:drawable/ic_menu_gallery"
         android:drawableTint="#000000"
