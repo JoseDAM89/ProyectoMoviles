@@ -73,14 +73,14 @@ public class ActivityCamara extends AppCompatActivity {
         }
     }
 
-    // Método para crear el archivo de imagen
+    // Método para crear el archivo de imagen en almacenamiento interno
     private File createImageFile() throws IOException {
         // Generar un nombre único basado en la fecha y hora actual
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
 
-        // Crear un directorio para guardar la imagen
-        File storageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "MisFotos");
+        // Crear un directorio dentro del almacenamiento interno para guardar la imagen
+        File storageDir = new File(getFilesDir(), "MisFotos"); // Usando getFilesDir() para almacenamiento interno
         if (!storageDir.exists()) {
             storageDir.mkdirs();
         }
@@ -119,3 +119,4 @@ public class ActivityCamara extends AppCompatActivity {
         }
     }
 }
+
