@@ -60,6 +60,14 @@ public class Activity1 extends AppCompatActivity {
                 startActivity(intentSensores);
             }
         });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentGaleria = new Intent(Activity1.this,ActivityGaleria.class);
+                startActivity(intentGaleria);
+            }
+        });
     }
 
     private void aumentacontador() {
