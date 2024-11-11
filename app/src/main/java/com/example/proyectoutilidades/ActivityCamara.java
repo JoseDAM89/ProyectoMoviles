@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -41,6 +42,12 @@ public class ActivityCamara extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         buttonTakePhoto = findViewById(R.id.buttonTakePhoto);
 
+        // Verificar si la carpeta MisFotos existe, y crearla si no
+        File storageDir = new File(getFilesDir(), "MisFotos");
+        if (!storageDir.exists()) {
+            storageDir.mkdirs(); // Crear la carpeta si no existe
+        }
+
         buttonTakePhoto.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
                     ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -73,16 +80,15 @@ public class ActivityCamara extends AppCompatActivity {
         }
     }
 
-    // Método para crear el archivo de imagen en almacenamiento interno
+    // Método para crear el archivo de imagen
     private File createImageFile() throws IOException {
-        // Generar un nombre único basado en la fecha y hora actual
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
 
-        // Crear un directorio dentro del almacenamiento interno para guardar la imagen
-        File storageDir = new File(getFilesDir(), "MisFotos"); // Usando getFilesDir() para almacenamiento interno
+        // Crear un directorio para guardar la imagen dentro del almacenamiento interno
+        File storageDir = new File(getFilesDir(), "MisFotos"); // Usamos el directorio privado de la app
         if (!storageDir.exists()) {
-            storageDir.mkdirs();
+            storageDir.mkdirs(); // Crear la carpeta si no existe
         }
 
         // Crear el archivo de imagen
@@ -106,7 +112,28 @@ public class ActivityCamara extends AppCompatActivity {
         }
     }
 
-    // Maneja la solicitud del permiso de cámara
+    // Método para cargar la imagen desde almacenamiento interno
+    public Bitmap cargarImagenDesdeInterno(String nombreArchivo) {
+        File storageDir = new File(getFilesDir(), "MisFotos");
+        File imageFile = new File(storageDir, nombreArchivo);
+
+        if (imageFile.exists()) {
+            return BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+        }
+        return null;
+    }
+
+    // Método para mostrar la imagen en un ImageView
+    public void mostrarImagen(String nombreArchivo) {
+        Bitmap bitmap = cargarImagenDesdeInterno(nombreArchivo);
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap);
+        } else {
+            Toast.makeText(this, "Imagen no encontrada", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Maneja la solicitud de permisos de cámara
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -119,4 +146,5 @@ public class ActivityCamara extends AppCompatActivity {
         }
     }
 }
+
 
