@@ -46,6 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:contentDescription="Vista previa de la foto" />
+        android:contentDescription="Vista previa de la foto" />-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
