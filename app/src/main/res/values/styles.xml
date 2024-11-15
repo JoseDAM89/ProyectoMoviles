@@ -12,5 +12,18 @@
         <item name="android:textAllCaps">false</item> <!-- Evita mayúsculas automáticas -->
         <item name="android:padding">20dp</item>
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Estilo para las imágenes en el GridView -->
+    <style name="GridImageStyle">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
 
 </resources>

@@ -41,7 +41,7 @@ public class Activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentInternet = new Intent(Activity1.this, ActivityInternet.class);
-                        startActivity(intentInternet);
+                startActivity(intentInternet);
             }
         });
 
@@ -49,7 +49,7 @@ public class Activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentCamara = new Intent(Activity1.this, ActivityCamara.class);
-                        startActivity(intentCamara);
+                startActivity(intentCamara);
             }
         });
 
@@ -95,3 +95,4 @@ public class Activity1 extends AppCompatActivity {
         editor.apply(); // Aplica los cambios
     }
 }
+

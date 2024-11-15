@@ -73,6 +73,7 @@ public class ActivityCamara extends AppCompatActivity {
             }
 
             if (photoFile != null) {
+
                 Uri photoURI = FileProvider.getUriForFile(this, "com.example.proyectoutilidades.fileprovider", photoFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
@@ -146,5 +147,3 @@ public class ActivityCamara extends AppCompatActivity {
         }
     }
 }
-
-
