@@ -1,12 +1,10 @@
 package com.example.proyectoutilidades;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -40,18 +38,15 @@ public class ImageAdapter extends BaseAdapter {
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(300, 300));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(200, 200)); // Tamaño del thumbnail
         } else {
             imageView = (ImageView) convertView;
         }
 
+        // Cargar la miniatura
         Bitmap bitmap = BitmapFactory.decodeFile(images[position].getAbsolutePath());
         imageView.setImageBitmap(bitmap);
-
-        // Descripción para accesibilidad
-        imageView.setContentDescription("Imagen capturada por la cámara");
 
         return imageView;
     }

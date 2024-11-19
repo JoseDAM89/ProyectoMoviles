@@ -21,25 +21,18 @@
             </intent-filter>
         </activity>
 
-        <!-- Aquí pueden ir otras actividades si las hay -->
-        <activity android:name=".ActivityInternet" android:exported="true">
+        <!-- Declaración de otras actividades -->
+        <activity android:name=".ActivityInternet" android:exported="true" />
+        <activity android:name=".ActivitySensores" android:exported="true" />
+        <activity android:name=".ActivityCamara" android:exported="true" />
+        <activity android:name=".ActivityGaleria" android:exported="true" />
 
-        </activity>
+        <!-- Declaración de la nueva actividad ActivityImagenAmpliada -->
+        <activity android:name=".ActivityImagenAmpliada" android:exported="true" />
 
-        <activity android:name=".ActivitySensores" android:exported="true">
-
-        </activity>
-
-        <activity android:name=".ActivityCamara" android:exported="true">
-
-        </activity>
-        <activity android:name=".ActivityGaleria" android:exported="true">
-
-        </activity>
-
+        <!-- Proveedor de archivos para compartir imágenes -->
         <provider
             android:name="androidx.core.content.FileProvider"
-
             android:authorities="com.example.proyectoutilidades.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -48,22 +41,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-
-
     </application>
 
-    <!-- Permiso para acceder a internet -->
-    <uses-permission android:name="android.permission.INTERNET"
-        tools:ignore="ManifestOrder" />
-
-    <!-- Permiso para la posición del teléfono-->
-
+    <!-- Permisos necesarios para el proyecto -->
+    <uses-permission android:name="android.permission.INTERNET" tools:ignore="ManifestOrder" />
     <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true" />
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
-    <!-- Permiso para acceder a la camara/>-->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

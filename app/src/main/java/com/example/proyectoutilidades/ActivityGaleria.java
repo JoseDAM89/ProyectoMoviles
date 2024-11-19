@@ -2,7 +2,7 @@ package com.example.proyectoutilidades;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -26,21 +26,41 @@ public class ActivityGaleria extends AppCompatActivity {
         noImagesText = findViewById(R.id.noImagesText);
 
         File directory = new File(getFilesDir(), "MisFotos");
+        if (!directory.exists() || !directory.isDirectory()) {
+            Toast.makeText(this, "El directorio no existe o no es válido.", Toast.LENGTH_SHORT).show();
+            noImagesText.setVisibility(View.VISIBLE);
+            return;
+        }
+
         images = directory.listFiles();
+        Log.d("ActivityGaleria", "Total imágenes: " + (images != null ? images.length : 0));
 
         if (images != null && images.length > 0) {
-            // Mostrar las imágenes en el GridView
             gridView.setAdapter(new ImageAdapter(this, images));
-            noImagesText.setVisibility(View.GONE); // Ocultar el texto si hay imágenes
+            noImagesText.setVisibility(View.GONE);
         } else {
-            // Mostrar el texto si no hay imágenes
             noImagesText.setVisibility(View.VISIBLE);
         }
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(this, ActivityImagenAmpliada.class);
-            intent.putExtra("imagePath", images[position].getAbsolutePath());
-            startActivity(intent);
+            try {
+                if (images == null || position < 0 || position >= images.length) {
+                    throw new Exception("Índice fuera de rango o lista de imágenes nula.");
+                }
+
+                File selectedFile = images[position];
+                Log.d("ActivityGaleria", "Archivo seleccionado: " + (selectedFile != null ? selectedFile.getAbsolutePath() : "null"));
+
+                if (selectedFile != null && selectedFile.isFile() && selectedFile.canRead()) {
+                    Intent intent = new Intent(this, ActivityImagenAmpliada.class);
+                    intent.putExtra("imagePath", selectedFile.getAbsolutePath());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "El archivo no es válido o no se puede leer.", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al abrir la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
