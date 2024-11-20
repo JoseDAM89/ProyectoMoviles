@@ -25,22 +25,7 @@ public class ActivityGaleria extends AppCompatActivity {
         gridView = findViewById(R.id.gridView);
         noImagesText = findViewById(R.id.noImagesText);
 
-        File directory = new File(getFilesDir(), "MisFotos");
-        if (!directory.exists() || !directory.isDirectory()) {
-            Toast.makeText(this, "El directorio no existe o no es válido.", Toast.LENGTH_SHORT).show();
-            noImagesText.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        images = directory.listFiles();
-        Log.d("ActivityGaleria", "Total imágenes: " + (images != null ? images.length : 0));
-
-        if (images != null && images.length > 0) {
-            gridView.setAdapter(new ImageAdapter(this, images));
-            noImagesText.setVisibility(View.GONE);
-        } else {
-            noImagesText.setVisibility(View.VISIBLE);
-        }
+        actualizarGaleria();
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
             try {
@@ -62,5 +47,32 @@ public class ActivityGaleria extends AppCompatActivity {
                 Toast.makeText(this, "Error al abrir la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarGaleria();
+    }
+
+    private void actualizarGaleria() {
+        File directory = new File(getFilesDir(), "MisFotos");
+        if (!directory.exists() || !directory.isDirectory()) {
+            Toast.makeText(this, "El directorio no existe o no es válido.", Toast.LENGTH_SHORT).show();
+            noImagesText.setVisibility(View.VISIBLE);
+            gridView.setAdapter(null); // Limpia el GridView
+            return;
+        }
+
+        images = directory.listFiles();
+        Log.d("ActivityGaleria", "Total imágenes actualizadas: " + (images != null ? images.length : 0));
+
+        if (images != null && images.length > 0) {
+            gridView.setAdapter(new ImageAdapter(this, images));
+            noImagesText.setVisibility(View.GONE);
+        } else {
+            noImagesText.setVisibility(View.VISIBLE);
+            gridView.setAdapter(null); // Limpia el GridView si no hay imágenes
+        }
     }
 }
