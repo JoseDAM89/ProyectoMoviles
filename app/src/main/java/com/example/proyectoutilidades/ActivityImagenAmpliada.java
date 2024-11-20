@@ -3,7 +3,6 @@ package com.example.proyectoutilidades;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
@@ -65,10 +64,12 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
         if (file.delete()) {
             Toast.makeText(this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
             finish();
+            overridePendingTransition(R.anim.vengo, R.anim.me_voy); // Sin animación de entrada, solo salida
         } else {
             Toast.makeText(this, "Error al eliminar la imagen", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
