@@ -3,6 +3,7 @@ package com.example.proyectoutilidades;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,10 +30,11 @@ public class ActivityGaleria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitygaleria);
 
-        recyclerView = findViewById(R.id.recyclerView); // Cambiado el ID a recyclerView
+        recyclerView = findViewById(R.id.recyclerView);
         noImagesText = findViewById(R.id.noImagesText);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // Ajusta el número de columnas
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // Número de columnas
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, 50, true)); // Márgenes de 16dp
 
         actualizarGaleria();
     }
@@ -47,7 +50,7 @@ public class ActivityGaleria extends AppCompatActivity {
         if (!directory.exists() || !directory.isDirectory()) {
             Toast.makeText(this, "El directorio no existe o no es válido.", Toast.LENGTH_SHORT).show();
             noImagesText.setVisibility(View.VISIBLE);
-            recyclerView.setAdapter(null); // Limpia el RecyclerView
+            recyclerView.setAdapter(null);
             return;
         }
 
@@ -59,7 +62,7 @@ public class ActivityGaleria extends AppCompatActivity {
             noImagesText.setVisibility(View.GONE);
         } else {
             noImagesText.setVisibility(View.VISIBLE);
-            recyclerView.setAdapter(null); // Limpia el RecyclerView si no hay imágenes
+            recyclerView.setAdapter(null);
         }
 
     }
@@ -100,6 +103,33 @@ public class ActivityGaleria extends AppCompatActivity {
                     if (position != RecyclerView.NO_POSITION) {
                         File selectedFile = images[position];
                         if (selectedFile.isFile() && selectedFile.canRead()) {
+                            // Obtener las coordenadas y dimensiones de la miniatura seleccionada
+                            int[] screenLocation = new int[2];
+                            imageView.getLocationOnScreen(screenLocation); // Coordenadas en pantalla
+                            int width = imageView.getWidth();
+                            int height = imageView.getHeight();
+
+                            // Pasar estos datos a la siguiente actividad
+                            Intent intent = new Intent(ActivityGaleria.this, ActivityImagenAmpliada.class);
+                            intent.putExtra("imagePath", selectedFile.getAbsolutePath());
+                            intent.putExtra("left", screenLocation[0]);
+                            intent.putExtra("top", screenLocation[1]);
+                            intent.putExtra("width", width);
+                            intent.putExtra("height", height);
+
+                            startActivity(intent);
+                            overridePendingTransition(0, 0); // Sin animación predeterminada
+                        } else {
+                            Toast.makeText(ActivityGaleria.this, "El archivo no es válido o no se puede leer.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                /* SIN ANIMACIÓN PARA AMPLIAR, TAMBIÉN CAMBIAR ACTIVITY IMAGEN AMPLIADA
+                itemView.setOnClickListener(v -> {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        File selectedFile = images[position];
+                        if (selectedFile.isFile() && selectedFile.canRead()) {
                             Intent intent = new Intent(ActivityGaleria.this, ActivityImagenAmpliada.class);
                             intent.putExtra("imagePath", selectedFile.getAbsolutePath());
                             startActivity(intent);
@@ -107,41 +137,50 @@ public class ActivityGaleria extends AppCompatActivity {
                             Toast.makeText(ActivityGaleria.this, "El archivo no es válido o no se puede leer.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });*/
             }
+
 
             public void bind(File imageFile) {
                 if (imageFile != null && imageFile.exists()) {
                     try {
-                        // Obtener el ancho y alto del ImageView, usar valores predeterminados si son 0
-                        int reqWidth = imageView.getWidth() > 0 ? imageView.getWidth() : 200; // 200 es un ejemplo
-                        int reqHeight = imageView.getHeight() > 0 ? imageView.getHeight() : 200;
+                        // Dimensiones deseadas para las imágenes
+                        int reqWidth = 100;
+                        int reqHeight = 100;
 
-                        // Escalar la imagen para que se ajuste al tamaño del ImageView
                         BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true; // Solo lee las dimensiones
+                        options.inJustDecodeBounds = true;
                         BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
 
-                        // Calcular el tamaño de muestra adecuado para la imagen
+                        // Escalado de la imagen según las dimensiones deseadas
                         options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-                        options.inJustDecodeBounds = false; // Ahora sí cargamos el bitmap
+                        options.inJustDecodeBounds = false;
+                        options.inPreferredConfig = Bitmap.Config.RGB_565;
 
-                        // Decodificar la imagen con el tamaño escalado
                         Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
                         if (bitmap != null) {
                             imageView.setImageBitmap(bitmap);
                         } else {
-                            // Placeholder si la imagen no se puede cargar
-                            imageView.setImageResource(R.drawable.ic_launcher_foreground);
+                            // Si la imagen no se puede cargar, eliminar el archivo
+                            eliminarImagen(imageFile);
                         }
                     } catch (Exception e) {
-                        // Manejo de excepciones si ocurre un error
                         e.printStackTrace();
-                        imageView.setImageResource(R.drawable.ic_launcher_foreground);
+                        // Si ocurre un error, eliminar el archivo
+                        eliminarImagen(imageFile);
                     }
                 } else {
-                    // Placeholder si el archivo no existe
-                    imageView.setImageResource(R.drawable.ic_launcher_foreground);
+                    // Si el archivo no existe, eliminarlo por seguridad
+                    eliminarImagen(imageFile);
+                }
+            }
+
+            // Método para eliminar la imagen y mostrar un mensaje
+            private void eliminarImagen(File imageFile) {
+                if (imageFile != null && imageFile.exists()) {
+                    if (imageFile.delete()) {
+                        actualizarGaleria();
+                    }
                 }
             }
 
@@ -154,7 +193,7 @@ public class ActivityGaleria extends AppCompatActivity {
                     final int halfHeight = height / 2;
                     final int halfWidth = width / 2;
 
-                    // Calcular el mayor factor de escala que sea una potencia de 2
+                    // Calcula el mayor factor de escala que sea potencia de 2
                     while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
                         inSampleSize *= 2;
                     }
@@ -162,8 +201,41 @@ public class ActivityGaleria extends AppCompatActivity {
                 return inSampleSize;
             }
 
+        }
+    }
 
+    // Clase para decorar con márgenes
+    public static class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+        private final int spanCount;
+        private final int spacing;
+        private final boolean includeEdge;
 
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, RecyclerView parent, @NonNull RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view);
+            int column = position % spanCount;
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount;
+                outRect.right = (column + 1) * spacing / spanCount;
+
+                if (position < spanCount) {
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing;
+            } else {
+                outRect.left = column * spacing / spanCount;
+                outRect.right = spacing - (column + 1) * spacing / spanCount;
+                if (position >= spanCount) {
+                    outRect.top = spacing;
+                }
+            }
         }
     }
 }

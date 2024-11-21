@@ -35,7 +35,7 @@ public class Activity1 extends AppCompatActivity {
         btn3 = findViewById(R.id.buttonSensores);
         btn4 = findViewById(R.id.buttonGaleria);
 
-
+ 
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
