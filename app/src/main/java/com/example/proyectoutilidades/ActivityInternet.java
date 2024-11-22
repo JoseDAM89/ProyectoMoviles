@@ -41,10 +41,10 @@ public class ActivityInternet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String ciudad = ciudadEditText.getText().toString();
-                if (!ciudad.isEmpty()) {
-                    new BuscarDatosCiudad().execute(ciudad);
-                } else {
+                if (ciudad.isEmpty()||ciudad.equals("Ciudad")) {
                     resultadoTextView.setText("Por favor, ingrese un nombre de ciudad.");
+                } else {
+                    new BuscarDatosCiudad().execute(ciudad);
                 }
             }
         });

@@ -10,15 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:contentDescription="imagen" />
+        android:contentDescription="Imagen capturada por cámara" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Imagen capturada por cámara"
-        android:textSize="12sp"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:paddingTop="4dp" />
 </LinearLayout>

@@ -28,7 +28,8 @@
         <activity android:name=".ActivityGaleria" android:exported="true" />
 
         <!-- Declaración de la nueva actividad ActivityImagenAmpliada -->
-        <activity android:name=".ActivityImagenAmpliada" android:exported="true" />
+        <activity android:name=".ActivityImagenAmpliada" android:exported="true"
+            android:theme="@style/Theme.Transparent"/>
 
         <!-- Proveedor de archivos para compartir imágenes -->
         <provider
