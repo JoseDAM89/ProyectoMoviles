@@ -2,6 +2,7 @@ package com.example.proyectoutilidades;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -18,7 +19,10 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
     private ImageView imageView;
     private String imagePath;
     private ScaleGestureDetector scaleGestureDetector;
-    private float scaleFactor = 1.0f;
+    private Matrix matrix = new Matrix();
+    private float currentScale = 1.0f;
+    private float minScale;
+    private final float maxScale = 5.0f;
 
     // Coordenadas y dimensiones originales de la miniatura
     private int left;
@@ -52,6 +56,7 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
+            imageView.setScaleType(ImageView.ScaleType.MATRIX);
         } else {
             Toast.makeText(this, "Error al cargar la imagen.", Toast.LENGTH_SHORT).show();
             finish();
@@ -73,13 +78,12 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
             return;
         }
 
-        // Asegurarse de que el ImageView está dibujado antes de animar
+        // Configurar la matriz inicial al cargar la imagen
         imageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 imageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-                // Iniciar la animación de expansión
+                configureInitialMatrix(bitmap);
                 animateImageExpansion();
             }
         });
@@ -91,12 +95,12 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Botón de eliminar no encontrado.", Toast.LENGTH_SHORT).show();
         }
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        scaleGestureDetector.onTouchEvent(event);
-        return super.onTouchEvent(event);
+        // Configurar gestos táctiles
+        imageView.setOnTouchListener((v, event) -> {
+            scaleGestureDetector.onTouchEvent(event);
+            return true;
+        });
     }
 
     @Override
@@ -115,6 +119,29 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Error al eliminar la imagen", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // Método para configurar la matriz inicial
+    private void configureInitialMatrix(Bitmap bitmap) {
+        float imageViewWidth = imageView.getWidth();
+        float imageViewHeight = imageView.getHeight();
+        float imageWidth = bitmap.getWidth();
+        float imageHeight = bitmap.getHeight();
+
+        // Calcular escalado inicial para ajustar la imagen al ImageView
+        float scaleX = imageViewWidth / imageWidth;
+        float scaleY = imageViewHeight / imageHeight;
+        minScale = Math.min(scaleX, scaleY); // Escala mínima para que la imagen encaje
+        currentScale = minScale;
+
+        // Centrar la imagen
+        float dx = (imageViewWidth - imageWidth * minScale) / 2;
+        float dy = (imageViewHeight - imageHeight * minScale) / 2;
+
+        // Configurar la matriz inicial
+        matrix.setScale(minScale, minScale);
+        matrix.postTranslate(dx, dy);
+        imageView.setImageMatrix(matrix);
     }
 
     // Método para animar la expansión de la imagen
@@ -139,7 +166,6 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
                 .start();
     }
 
-
     // Método para animar la colisión de la imagen
     private void animateImageCollapse() {
         // Cambiar el fondo a transparente antes de la animación
@@ -158,15 +184,26 @@ public class ActivityImagenAmpliada extends AppCompatActivity {
                 .start();
     }
 
-
     // Listener para gestos de escalado
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            scaleFactor *= detector.getScaleFactor();
-            scaleFactor = Math.max(0.5f, Math.min(scaleFactor, 5.0f));
-            imageView.setScaleX(scaleFactor);
-            imageView.setScaleY(scaleFactor);
+            float scaleFactor = detector.getScaleFactor();
+
+            // Calcular el nuevo factor de escala dentro de los límites
+            float newScale = currentScale * scaleFactor;
+            if (newScale > maxScale) {
+                scaleFactor = maxScale / currentScale;
+            } else if (newScale < minScale) {
+                scaleFactor = minScale / currentScale;
+            }
+
+            // Aplicar la escala en el punto focal de los dedos
+            matrix.postScale(scaleFactor, scaleFactor, detector.getFocusX(), detector.getFocusY());
+            imageView.setImageMatrix(matrix);
+
+            // Actualizar el factor de escala actual
+            currentScale *= scaleFactor;
             return true;
         }
     }

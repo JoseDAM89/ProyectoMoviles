@@ -27,10 +27,10 @@ public class ActivitySensores extends AppCompatActivity implements SensorEventLi
 
         // Inicializar el SensorManager
         try{
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        // Verificar si el dispositivo tiene sensor de rotación
-        rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+            // Verificar si el dispositivo tiene sensor de rotación
+            rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
         if (rotationVectorSensor == null  ) {
             Toast.makeText(this, "El sensor de rotación no está disponible en este dispositivo", Toast.LENGTH_LONG).show();
